@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: black;
+}
+
+@property --zoios {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 0%;
+}
+
+@property --zolhos {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 0%;
+}
+
+.olhos {
+    width: 300px;
+    padding-block: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.olhos > div {
+    position: relative;
+    width: 160px;
+    aspect-ratio: 0.5;
+    background: white;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.olhos > div::before, 
+.olhos > div::after {
+    content: '';
+    position: absolute;
+    width: 116%;
+    height: 165%;
+    left: 50%;
+    animation: eyelid 5s ease-in-out infinite;
+    z-index: 1;
+}
+
+.olhos > div::before {
+    top: 0;
+    border-radius: 0% 0% 40% 40%;
+    transform: translateY(var(--zoios)) translateX(-50%);
+    border-bottom: 40px solid black;
+}
+
+.olhos > div::after {
+    bottom: 0;
+    border-radius: 40% 40% 0% 0%;
+    transform: translateY(var(--zolhos)) translateX(-50%);
+    border-top: 40px solid black;
+}
+
+.olhos > div i {
+    position: absolute;
+    width: 60px;
+    aspect-ratio: inherit;
+    background: black;
+    border-radius: inherit;
+}
+
+@keyframes eyelid {
+    0% {
+       --zoios: -50%;
+       --zolhos: 50%;
+    }
+    3% {
+       --zoios: 0%;
+       --zolhos: 0%;
+    }
+    6% {
+       --zoios: -50%;
+       --zolhos: 50%;
+    }
+    9% {
+       --zoios: 0%;
+       --zolhos: 0%;
+    }
+}
